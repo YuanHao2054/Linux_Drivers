@@ -5,6 +5,8 @@
 #include <linux/init.h>
 #include <linux/module.h>
 
+/*该设备运行在内核空间，会有用户空间的程序对这个设备进行访问，和用户空间通信的缓冲区:形参中的char __user *buf */
+
 /*主设备号和名称*/
 #define CHRDEVBASE_MAJOR 200
 #define CHRDEVBASE_NAME "chardevbase"
@@ -40,8 +42,11 @@ static ssize_t chrdevbase_read(struct file *filp, char __user *buf, size_t cnt, 
     int retvalue = 0;
 
     /*向用户空间发送数据*/
+    //先将内核空间的数据拷贝到readbuf中
     memcpy(readbuf, kerneldata, sizeof(kerneldata));
-    retvalue = copy_to_user(writebuf, buf, cnt);
+
+    //内核空间不能直接操作用户空间的内存，需要使用copy_to_user函数，将readbuf中的数据拷贝到buf中
+    retvalue = copy_to_user(buf, readbuf, cnt);
 
     if (retvalue == 0)
     {
@@ -67,6 +72,7 @@ static ssize_t chrdevbase_write(struct file *filp, const char __user *buf, size_
     int retvalue = 0;
 
     /*接收用户空间传递给内核的数据并且打印出来*/
+    //将buf中的数据拷贝到writebuf中
     retvalue = copy_from_user(writebuf, buf, cnt);
     if (retvalue == 0)
     {
@@ -99,7 +105,7 @@ static struct file_operations chardevbase_fops =
     .read = chrdevbase_read,
     .write = chrdevbase_write,
     .release = chrdevbase_release,
-}
+};
 
 /*
 描述：驱动入口函数
@@ -137,6 +143,7 @@ static void __exit chrdevbase_exit(void)
 /*指定驱动的入口和出口函数*/
 module_init(chrdevbase_init);
 module_exit(chrdevbase_exit);
+
 
 /*指定驱动的许可证*/
 MODULE_LICENSE("GPL");
