@@ -4,8 +4,9 @@
       "name": "linux-gcc-x64",
       "includePath": [
         "${workspaceFolder}/**",
-        "/home/yuanhao/linux/alientek_linux/arch/arm/include",
-        "/home/yuanhao/linux/alientek_linux/arch/arm/include/generated"
+        "/home/yuanhao/linux/linux-kernel-imx6ull/include",
+        "/home/yuanhao/linux/linux-kernel-imx6ull/arch/arm/include",
+        "/home/yuanhao/linux/linux-kernel-imx6ull/arch/arm/include/generated"
       ],
       "compilerPath": "/usr/bin/gcc",
       "cStandard": "${default}",
