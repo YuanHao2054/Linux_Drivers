@@ -13,5 +13,8 @@
 # 忽略所有 .order 文件
 *.order
 
-# 忽略没有后缀名的可执行文件
-*~
+# 忽略所有 .mod.c 文件
+*.mod.c
+
+# 忽略所有 .tmp_versions 文件夹
+.tmp_versions
