@@ -9,7 +9,7 @@
 #include <asm/mach/map.h>
 #include <asm/uaccess.h>
 #include <asm/io.h>
-#include <stdint.h>
+
 
 
 /*主设备号和名字*/
@@ -86,10 +86,12 @@ static ssize_t led_write(struct file *filp, const char __user *buf, size_t cnt, 
     if (ledstat == LED_ON)
     {
         led_switch(LED_ON); /*打开led*/
+        printk("open led!\r\n");
     }
     else if (ledstat == LED_OFF)
     {
         led_switch(LED_OFF);/*关闭led*/
+        printk("close led!\r\n");
     }
 
     return 0;
@@ -157,6 +159,10 @@ static int __init led_init(void)
         printk("register led driver failed!\r\n");
         return -EIO;
     }
+    else
+    {
+        printk("register led driver succeeded!\r\n");
+    }
 
     return 0;
 }
@@ -173,6 +179,7 @@ static void __exit led_exit(void)
 
     /*注销字符设备驱动*/
     unregister_chrdev(LED_MAJOR, LED_NAME);
+    printk("unregister led driver succeeded!\r\n");
 }
 
 /*模块注册*/
