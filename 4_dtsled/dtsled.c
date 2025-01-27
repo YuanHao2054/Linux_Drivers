@@ -47,7 +47,7 @@ struct dtsled_dev
     int minor;             /*次设备号*/
 
     /*使用OF函数获取设备树节点中的属性值*/
-    struct device_node *nd; /*设备节点*/
+    struct device_node *nd; /*设备树节点*/
 };
 
 struct dtsled_dev dtsled; /*led设备*/
