@@ -40,7 +40,6 @@ struct gpioled_dev gpioled; /*led设备*/
 /*打开设备*/
 static int led_open(struct inode *inode, struct file *filp)
 {
-
     filp->private_data = &gpioled; /*设置私有数据*/
 
     /*获取信号量，进入休眠状态的进程可以被信号打断*/

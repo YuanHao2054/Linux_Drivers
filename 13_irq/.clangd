@@ -1,0 +1,9 @@
+CompileFlags:
+  Add: 
+    - "-isystem/usr/include"
+    - "-isystem/usr/lib/gcc/x86_64-linux-gnu/11/include"
+    - "-isystem/usr/include/x86_64-linux-gnu"
+    - "-isystem/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"
+  Remove: [-fno-ipa-sra, -mno-thumb-interwork, -fno-var-tracking-assignments, -mno-single-pic-base, -fconserve-stack]
+
+

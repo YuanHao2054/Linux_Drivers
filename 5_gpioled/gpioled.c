@@ -35,6 +35,9 @@ struct gpioled_dev
 
 struct gpioled_dev gpioled; /*led设备*/
 
+
+
+
 /*打开设备*/
 static int led_open(struct inode *inode, struct file *filp)
 {

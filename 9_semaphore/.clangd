@@ -1,0 +1,9 @@
+CompileFlags:
+  Add: 
+    - "-isystem/usr/include"
+    - "-isystem/usr/lib/gcc/x86_64-linux-gnu/11/include"
+    - "-isystem/usr/include/x86_64-linux-gnu"
+    - "-isystem/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"
+  Remove: [-mno-direct-extern-access, -fconserve-stack, -fno-allow-store-data-races, -mfunction-return=thunk-extern, -mindirect-branch-cs-prefix, -mindirect-branch-register, -mindirect-branch=thunk-extern, -mskip-rax-setup, -mpreferred-stack-boundary=3, -mno-fp-ret-in-387]
+
+
